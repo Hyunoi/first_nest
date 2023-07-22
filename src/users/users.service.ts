@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { EmailService } from 'src/email/email.service';
 import * as uuid from 'uuid';
-import { UserRepository } from './users.repository';
-import { UserInfo } from './dto/userInfo';
+import { UserRepository } from '../email/users.repository';
+import { UserInfo } from './userInfo';
 
 @Injectable()
 export class UsersService {

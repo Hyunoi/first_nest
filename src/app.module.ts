@@ -3,11 +3,10 @@ import { UsersModule } from './users/users.module';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
 import { EmailService } from './email/email.service';
-import { UserRepository } from './users/users.repository';
+import { UserRepository } from './email/users.repository';
+import { EmailModule } from './email/email.module';
 
 @Module({
-  imports: [ UsersModule ],
-  controllers: [ UsersController ],
-  providers: [ UsersService, UserRepository, EmailService ],
+  imports: [ UsersModule, EmailModule ]
 })
 export class AppModule {}
