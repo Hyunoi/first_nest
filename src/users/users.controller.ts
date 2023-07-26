@@ -4,6 +4,7 @@ import { UsersService } from './users.service';
 import { VerifyEmailDto } from './dto/verify-email.dto';
 import { UserLoginDto } from './dto/user-login.dto';
 import { ValidationPipe } from '@nestjs/common';
+import { UserEntity } from './entity/user.entity';
 
 @Controller('users')
 export class UsersController {
@@ -23,14 +24,14 @@ export class UsersController {
   }
 
   @Post('/login')
-  async login(@Body() dto: UserLoginDto): Promise<string> {
+  async login(@Body() dto: UserLoginDto): Promise<UserEntity> {
     const { email, password } = dto;
 
     return await this.usersService.login(email, password);
   }
 
   @Get('/:id')
-  async getUserInfo(@Param('id') userId: number): Promise<string> {
+  async getUserInfo(@Param('id', ValidationPipe) userId: number): Promise<UserEntity> {
     return await this.usersService.getUserInfo(userId);
   }
 }

@@ -1,14 +1,14 @@
 import { ValidationArguments, ValidationOptions, registerDecorator } from "class-validator";
 
 export function NotIn(property: string, validationOptions?: ValidationOptions) { //1
-    return (object: Object, propertyName: string) => {
-        registerDecorator({ 
-            name: 'NotIn', 
-            target: object.constructor, 
+    return (object: Object, propertyName: string) => { //2
+        registerDecorator({ //3
+            name: 'NotIn', //4
+            target: object.constructor, //5
             propertyName,
-            options: validationOptions, 
-            constraints: [property], 
-            validator: { 
+            options: validationOptions, //6
+            constraints: [property], //7
+            validator: { //8
                 validate(value: any, args: ValidationArguments){
                     const [relatedPropertyName] = args.constraints;
                     const relatedValue = (args.object as any)[relatedPropertyName];
